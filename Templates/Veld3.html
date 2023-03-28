@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/dcbb15e7da.js" crossorigin="anonymous"></script>
+    <title>Veld 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'CSS/Veld3.css' %}" />
+    <link rel="stylesheet" href="{% static 'CSS/Format.css' %}" />
+</head>
+<body>
+    <main>
+        <form class="fields" method="post">
+            <div class="full-map">
+                <div class="picture">
+                    <button name="field19_active"><img {% if active_fields|length_is:"1" and 'field19_active' in active_fields %} src="{% static 'IMG/Soccerfield_active.png' %}" {% else %} src="{% static 'IMG/Soccerfield.png' %}"{% endif %} alt=""></button>
+                </div>
+            </div>
+            <div class="half-top">
+                <div class="picture">
+                    <button name="field20_active"><img {% if active_fields|length_is:"1" and 'field20_active' in active_fields %} src="{% static 'IMG/Soccerfield-half-bottom-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-half-bottom.png' %}"{% endif %} alt=""></button>
+                </div>
+            </div>
+            <div class="half-bottom">
+                <div class="picture">
+                    <button name="field21_active"><img {% if active_fields|length_is:"1" and 'field21_active' in active_fields %} src="{% static 'IMG/Soccerfield-half-top-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-half-top.png' %}"{% endif %} alt=""></button>
+                </div>
+            </div>
+            <div class="keeper-bottom">
+                <div class="picture">
+                    <button name="field22_active"><img {% if active_fields|length_is:"1" and 'field22_active' in active_fields %} src="{% static 'IMG/Soccerfield-keeper-bottom-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-keeper-bottom.png' %}"{% endif %} alt=""></button>
+                </div>
+            </div>
+            <div class="keeper-top">
+                <div class="picture">
+                    <button name="field23_active"><img {% if active_fields|length_is:"1" and 'field23_active' in active_fields %} src="{% static 'IMG/Soccerfield-keeper-top-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-keeper-top.png' %}"{% endif %} alt=""></button>
+                </div>
+            </div>
+            <div class="both-keeper">
+                <div class="picture">
+                    <button name="field24_active"><img {% if active_fields|length_is:"1" and 'field24_active' in active_fields %} src="{% static 'IMG/Soccerfield-both-keeper-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-both-keeper.png' %}"{% endif %} alt=""></button>
+                </div>
+            </div>
+            {% csrf_token %}
+        </form>
+        <form class="controls" method="post">
+            <button {% if light.lamp0013_bool %} class="lamp-format lamp-aan-format" {% else %} class="lamp-format lamp-uit-format" {% endif %} type="submit" name="Lamp0013_bool"><i class="fa-regular fa-lightbulb"></i> Wedstrijd {{ light.Lamp0013_bool }}</button>
+            <button {% if light.lamp0014_bool %} class="lamp-format lamp-aan-format" {% else %} class="lamp-format lamp-uit-format" {% endif %} type="submit" name="Lamp0014_bool"><i class="fa-regular fa-lightbulb"></i> Training {{ light.Lamp0014_bool }}</button>
+            <button {% if light.lamp0015_bool %} class="lamp-format lamp-aan-format" {% else %} class="lamp-format lamp-uit-format" {% endif %} type="submit" name="Lamp0015_bool"><i class="fa-regular fa-lightbulb"></i> Gedimd {{ light.Lamp0015_bool }}</button>
+            <button {% if light.lamp0016_bool %} class="lamp-format lamp-aan-format" {% else %} class="lamp-format lamp-uit-format" {% endif %} type="submit" name="Lamp0016_bool"><i class="fa-regular fa-lightbulb"></i> Off {{ light.Lamp0016_bool }}</button>
+            {% csrf_token %}
+        </form>
+    </main> 
+    <script src="{% static 'JS/Nav.js' %}"></script>   
+    <script src="{% static 'JS/Collorchange_Button.js' %}"></script> 
+</body>
+</html>
