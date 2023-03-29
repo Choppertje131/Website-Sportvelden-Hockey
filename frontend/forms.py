@@ -9,3 +9,4 @@ class Venueform(Modelform):
         labels = {
             'venue_image': '',
         }
+        
