@@ -15,32 +15,32 @@
         <form class="fields" method="post">
             <div class="full-map">
                 <div class="picture">
-                    <button name="field1_active"><img {% if active_fields|length_is:"1" and 'field1_active' in active_fields %} src="{% static 'IMG/Soccerfield_active.png' %}" {% else %} src="{% static 'IMG/Soccerfield.png' %}"{% endif %} alt=""></button>
+                    <button name="field1_active"><img {% if active_fields|length_is:"1" and 'field1_active' in active_fields %} src="{% static 'IMG/Hockeyfield-active.png' %}" {% else %} src="{% static 'IMG/Hockeyfield.png' %}"{% endif %} alt=""></button>
                 </div>
             </div>
             <div class="half-top">
                 <div class="picture">
-                    <button name="field2_active"><img {% if active_fields|length_is:"1" and 'field2_active' in active_fields %} src="{% static 'IMG/Soccerfield-half-bottom-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-half-bottom.png' %}"{% endif %} alt=""></button>
+                    <button name="field2_active"><img {% if active_fields|length_is:"1" and 'field2_active' in active_fields %} src="{% static 'IMG/Hockeyfield-half-bottom-active.png' %}" {% else %} src="{% static 'IMG/Hockeyfield-half-bottom.png' %}"{% endif %} alt=""></button>
                 </div>
             </div>
             <div class="half-bottom">
                 <div class="picture">
-                    <button name="field3_active"><img {% if active_fields|length_is:"1" and 'field3_active' in active_fields %} src="{% static 'IMG/Soccerfield-half-top-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-half-top.png' %}"{% endif %} alt=""></button>
+                    <button name="field3_active"><img {% if active_fields|length_is:"1" and 'field3_active' in active_fields %} src="{% static 'IMG/Hockeyfield-half-top-active.png' %}" {% else %} src="{% static 'IMG/Hockeyfield-half-top.png' %}"{% endif %} alt=""></button>
                 </div>
             </div>
             <div class="keeper-bottom">
                 <div class="picture">
-                    <button name="field4_active"><img {% if active_fields|length_is:"1" and 'field4_active' in active_fields %} src="{% static 'IMG/Soccerfield-keeper-bottom-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-keeper-bottom.png' %}"{% endif %} alt=""></button>
+                    <button name="field4_active"><img {% if active_fields|length_is:"1" and 'field4_active' in active_fields %} src="{% static 'IMG/Hockeyfield-keeper-bottom-active.png' %}" {% else %} src="{% static 'IMG/Hockeyfield-keeper-bottom.png' %}"{% endif %} alt=""></button>
                 </div>
             </div>
             <div class="keeper-top">
                 <div class="picture">
-                    <button name="field5_active"><img {% if active_fields|length_is:"1" and 'field5_active' in active_fields %} src="{% static 'IMG/Soccerfield-keeper-top-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-keeper-top.png' %}"{% endif %} alt=""></button>
+                    <button name="field5_active"><img {% if active_fields|length_is:"1" and 'field5_active' in active_fields %} src="{% static 'IMG/Hockeyfield-keeper-top-active.png' %}" {% else %} src="{% static 'IMG/Hockeyfield-keeper-top.png' %}"{% endif %} alt=""></button>
                 </div>
             </div>
             <div class="both-keeper">
                 <div class="picture">
-                    <button name="field6_active"><img {% if active_fields|length_is:"1" and 'field6_active' in active_fields %} src="{% static 'IMG/Soccerfield-both-keeper-active.png' %}" {% else %} src="{% static 'IMG/Soccerfield-both-keeper.png' %}"{% endif %} alt=""></button>
+                    <button name="field6_active"><img {% if active_fields|length_is:"1" and 'field6_active' in active_fields %} src="{% static 'IMG/Hockeyfield-both-keeper-active.png' %}" {% else %} src="{% static 'IMG/Hockeyfield-both-keeper.png' %}"{% endif %} alt=""></button>
                 </div>
             </div>
             {% csrf_token %}
@@ -54,6 +54,5 @@
         </form>
     </main> 
     <script src="{% static 'JS/Nav.js' %}"></script>   
-    <script src="{% static 'JS/Collorchange_Button.js' %}"></script> 
 </body>
 </html>
