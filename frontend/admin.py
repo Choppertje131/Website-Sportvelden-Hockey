@@ -3,6 +3,7 @@ from .models import Permissions
 from .models import Settings_fieldnames
 from .models import Settings_lightnames
 from .models import Selecting_fields
+from .models import Venue
 from .models import LightButton
 from django.contrib.admin.options import ModelAdmin
 from django.conf import settings
@@ -14,6 +15,7 @@ admin.site.register(Settings_fieldnames)
 admin.site.register(Settings_lightnames)
 admin.site.register(Selecting_fields)
 admin.site.register(LightButton)
+admin.site.register(Venue)
 
 class MyModelAdmin(ModelAdmin):
     class Media:

@@ -89,3 +89,9 @@ class LightButton(models.Model):
 
     def __str__(self):
         return f'LightButton {self.id}'
+
+class Venue(models.Model):
+    venue_image = models.ImageField(null = True, blank = True, upload_to = "IMG/")
+
+    def __str__(self):
+        return self.name
