@@ -326,7 +326,6 @@ def homeview(request):
     for field_name in ['Lamp001_bool', 'Lamp002_bool', 'Lamp003_bool', 'Lamp004_bool']:
         lamp_data[field_name.lower()] = getattr(light_button, field_name)
 
-
     field_data = {f: getattr(field_settings, f) for f in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']}
     active_fields = [field for field in ['field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active', 'field1_active'] if getattr(field_settings, field)]
     enabled_fields = bool(active_fields)
