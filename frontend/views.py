@@ -12,7 +12,7 @@ light_names = Settings_lightnames.objects.all()
 light_button = LightButton
 Logo = Logo
 
-# line 15 to line 47 makes sure that you cant enter the website without having an account.
+# line 16 to line 47 makes sure that you cant enter the website without having an account.
 def loginview(request): 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -46,7 +46,7 @@ def logoutview(request):
     logout(request)
     return redirect("/login")
 
-# with line 49 to line 82, you can make your own account to view the site, however, you dont get permission to change anything.
+# with line 49 to line 83, you can make your own account to view the site, however, you dont get permission to change anything.
 def registerview(request):
     
     if request.method == 'POST':
@@ -82,7 +82,7 @@ def registerview(request):
 
     return render(request, 'Index.html', data )
 
-# line 98 to line 125 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
+# line 86 to line 113 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
 def veld1view(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -112,7 +112,7 @@ def veld1view(request):
 
     return render(request, 'Index.html', data )
 
-# line 128 to line 155 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
+# line 115 to line 143 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
 def veld2view(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -142,7 +142,7 @@ def veld2view(request):
 
     return render(request, 'Index.html', data )
 
-# line 158 to 167 makes sure that you are logged in before you can view the site
+# line 146 to 155 makes sure that you are logged in before you can view the site
 def settingsview(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -154,7 +154,7 @@ def settingsview(request):
 
     return render(request, 'Index.html', data )
 
-# line 170 to line 197 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
+# line 157 to line 185 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
 def veld3view(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -184,7 +184,7 @@ def veld3view(request):
 
     return render(request, 'Index.html', data)
 
-# line 200 to line 228 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
+# line 188 to line 198 are to make sure that you are logged in before you can view the site, but also to display the changes that are made in the Settings page.
 def veld4view(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -197,7 +197,7 @@ def veld4view(request):
 
     return render(request, 'Index.html', data)
 
-# line 199 to line 281, are there to make sure that all the lights will turn off at a specific time.
+# line 200 to line 281, are there to make sure that all the lights will turn off at a specific time.
 # def homeview(request):
     
 #     now = datetime.now()
@@ -344,7 +344,7 @@ def homeview(request):
         'field_data': field_data,
         'enabled_fields': enabled_fields,
         'active_fields': active_fields,
-        'logo.logo_image': request.FILES,
+        'logo': Logo.objects.last(),
     }
     return render(request, 'Index.html', data)
 
@@ -408,6 +408,7 @@ def veld1view(request):
         'field_data': field_data,
         'enabled_fields': enabled_fields,
         'active_fields': active_fields,
+        'logo': Logo.objects.last(),
     }
     return render(request, 'Index.html', data)
 
@@ -471,6 +472,7 @@ def veld2view(request):
         'field_data': field_data,
         'enabled_fields': enabled_fields,
         'active_fields': active_fields,
+        'logo': Logo.objects.last(),
     }
     return render(request, 'Index.html', data)
 
@@ -534,6 +536,7 @@ def veld3view(request):
         'field_data': field_data,
         'enabled_fields': enabled_fields,
         'active_fields': active_fields,
+        'logo': Logo.objects.last(),
     }
     return render(request, 'Index.html', data)
 
@@ -586,6 +589,7 @@ def settingssview(request):
                 'page': 'Settingss.html',
                 'error': '',
                 'field': Settings_fieldnames.objects.last(),
+                'logo': Logo.objects.last(),
             }   
     return render(request, 'Index.html', data)
 
