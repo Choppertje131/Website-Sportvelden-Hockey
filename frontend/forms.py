@@ -1,12 +1,12 @@
 from django import forms
 from django.forms import Modelform
-from .models import Venue
+from .models import Logo
 
-class Venueform(Modelform):
+class Logoform(Modelform):
     class Meta:
-        model = Venue
-        fields = ('venue_image')
+        model = Logo
+        fields = ('logo_image')
         labels = {
-            'venue_image': '',
+            'logo_image': '',
         }
         
