@@ -6,9 +6,8 @@ from django.shortcuts import render, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
-from .models import Settings_fieldnames, Settings_lightnames, Selecting_fields, LightButton, Logo
+from .models import Settings_fieldnames, Selecting_fields, LightButton, Logo
 field_names = Settings_fieldnames
-light_names = Settings_lightnames.objects.all()
 light_button = LightButton
 Logo = Logo
 
@@ -569,22 +568,7 @@ def settingssview(request):
                 setattr(table, field, Settings_fieldnames.objects.values(field).last()[field])
 
         table.save()
-    
-    if request.method == "POST" and "lights" in request.POST:
-        boxes = {'l1': 'Lamp1', 'l2': 'Lamp2', 'l3': 'Lamp3', 'l4': 'Lamp4'}
-        table = Settings_lightnames()
-
-        for box, lamp in boxes.items():
-            requested_box = request.POST.get(box)
-            if requested_box != "" and len(requested_box) > 1:
-                setattr(table, lamp, requested_box)
-            else:
-                setattr(table, lamp, Settings_lightnames.objects.values(lamp).last()[lamp])
-        table.field_id = request.POST.get('field_id')
-        
-        table.save()
-
-    
+      
     data = {
                 'page': 'Settingss.html',
                 'error': '',
