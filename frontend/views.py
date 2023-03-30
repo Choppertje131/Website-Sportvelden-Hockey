@@ -280,7 +280,7 @@ def homeview(request):
 
     return render(request, 'Index.html', data)
 
-# lines 284 to 482 makes sure that you can sellect the correct light option and makes the fields on the home page change color when its activated. There are 4 the same codes, but for a different page
+# lines 284 to 534 makes sure that you can sellect the correct light option and makes the fields on the home page change color when its activated. There are 4 the same codes, but for a different page
 def homeview(request):
     light_button = LightButton.objects.last()
     active_lamps = [lamp for lamp in ['Lamp001_bool', 'Lamp002_bool', 'Lamp003_bool', 'Lamp004_bool'] if getattr(light_button, lamp)]
@@ -302,22 +302,35 @@ def homeview(request):
                         setattr(light_button, other_lamp, False)
                         light_button.save()
 
-        for field in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']:
-            if field in request.POST:
-                setattr(field_settings, field, field not in active_fields)
-                field_settings.save()
-                active_fields = [field] if field not in active_fields else []
-                enabled_fields = bool(active_fields)
-                for other_field in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']:
-                    if other_field != field:
-                        setattr(field_settings, other_field, False)
-                        field_settings.save()
+    for field in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']:
+        if field in request.POST:
+            for other_field in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']:
+                if other_field == field:
+                    continue
+                setattr(field_settings, other_field, False)
+            if getattr(field_settings, field):
+                setattr(field_settings, field, False)
+            else:
+                setattr(field_settings, field, True)
+            field_settings.save()
+
+            active_fields = [field] if field not in active_fields else []
+            enabled_fields = bool(active_fields)
+
+    field_data = {f: getattr(field_settings, f) for f in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']}
+
+    if 'field1_active' in active_fields:
+        field_data['field1_active'] = getattr(field_settings, 'field1_active')
 
     lamp_data = {}
     for field_name in ['Lamp001_bool', 'Lamp002_bool', 'Lamp003_bool', 'Lamp004_bool']:
         lamp_data[field_name.lower()] = getattr(light_button, field_name)
 
+
     field_data = {f: getattr(field_settings, f) for f in ['field1_active', 'field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active']}
+    active_fields = [field for field in ['field2_active', 'field3_active', 'field4_active', 'field5_active', 'field6_active', 'field1_active'] if getattr(field_settings, field)]
+    enabled_fields = bool(active_fields)
+
 
     data = {
         'page': 'Home.html',
@@ -352,22 +365,35 @@ def veld1view(request):
                         setattr(light_button, other_lamp, False)
                         light_button.save()
 
-        for field in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active']:
-            if field in request.POST:
-                setattr(field_settings, field, field not in active_fields)
-                field_settings.save()
-                active_fields = [field] if field not in active_fields else []
-                enabled_fields = bool(active_fields)
-                for other_field in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active']:
-                    if other_field != field:
-                        setattr(field_settings, other_field, False)
-                        field_settings.save()
+    for field in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active']:
+        if field in request.POST:
+            for other_field in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active']:
+                if other_field == field:
+                    continue
+                setattr(field_settings, other_field, False)
+            if getattr(field_settings, field):
+                setattr(field_settings, field, False)
+            else:
+                setattr(field_settings, field, True)
+            field_settings.save()
+
+            active_fields = [field] if field not in active_fields else []
+            enabled_fields = bool(active_fields)
+
+    field_data = {f: getattr(field_settings, f) for f in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active']}
+
+    if 'field7_active' in active_fields:
+        field_data['field7_active'] = getattr(field_settings, 'field7_active')
 
     lamp_data = {}
     for field_name in ['Lamp005_bool', 'Lamp006_bool', 'Lamp007_bool', 'Lamp008_bool']:
         lamp_data[field_name.lower()] = getattr(light_button, field_name)
 
+
     field_data = {f: getattr(field_settings, f) for f in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active']}
+    active_fields = [field for field in ['field7_active', 'field8_active', 'field9_active', 'field10_active', 'field11_active', 'field12_active'] if getattr(field_settings, field)]
+    enabled_fields = bool(active_fields)
+
 
     data = {
         'page': 'Veld1.html',
@@ -402,22 +428,35 @@ def veld2view(request):
                         setattr(light_button, other_lamp, False)
                         light_button.save()
 
-        for field in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active']:
-            if field in request.POST:
-                setattr(field_settings, field, field not in active_fields)
-                field_settings.save()
-                active_fields = [field] if field not in active_fields else []
-                enabled_fields = bool(active_fields)
-                for other_field in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active']:
-                    if other_field != field:
-                        setattr(field_settings, other_field, False)
-                        field_settings.save()
+    for field in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active']:
+        if field in request.POST:
+            for other_field in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active']:
+                if other_field == field:
+                    continue
+                setattr(field_settings, other_field, False)
+            if getattr(field_settings, field):
+                setattr(field_settings, field, False)
+            else:
+                setattr(field_settings, field, True)
+            field_settings.save()
+
+            active_fields = [field] if field not in active_fields else []
+            enabled_fields = bool(active_fields)
+
+    field_data = {f: getattr(field_settings, f) for f in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active']}
+
+    if 'field13_active' in active_fields:
+        field_data['field13_active'] = getattr(field_settings, 'field13_active')
 
     lamp_data = {}
     for field_name in ['Lamp009_bool', 'Lamp0010_bool', 'Lamp0011_bool', 'Lamp0012_bool']:
         lamp_data[field_name.lower()] = getattr(light_button, field_name)
 
+
     field_data = {f: getattr(field_settings, f) for f in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active']}
+    active_fields = [field for field in ['field13_active', 'field14_active', 'field15_active', 'field16_active', 'field17_active', 'field18_active'] if getattr(field_settings, field)]
+    enabled_fields = bool(active_fields)
+
 
     data = {
         'page': 'Veld2.html',
@@ -452,22 +491,35 @@ def veld3view(request):
                         setattr(light_button, other_lamp, False)
                         light_button.save()
 
-        for field in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active']:
-            if field in request.POST:
-                setattr(field_settings, field, field not in active_fields)
-                field_settings.save()
-                active_fields = [field] if field not in active_fields else []
-                enabled_fields = bool(active_fields)
-                for other_field in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active']:
-                    if other_field != field:
-                        setattr(field_settings, other_field, False)
-                        field_settings.save()
+    for field in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active']:
+        if field in request.POST:
+            for other_field in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active']:
+                if other_field == field:
+                    continue
+                setattr(field_settings, other_field, False)
+            if getattr(field_settings, field):
+                setattr(field_settings, field, False)
+            else:
+                setattr(field_settings, field, True)
+            field_settings.save()
+
+            active_fields = [field] if field not in active_fields else []
+            enabled_fields = bool(active_fields)
+
+    field_data = {f: getattr(field_settings, f) for f in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active']}
+
+    if 'field19_active' in active_fields:
+        field_data['field19_active'] = getattr(field_settings, 'field19_active')
 
     lamp_data = {}
     for field_name in ['Lamp0013_bool', 'Lamp0014_bool', 'Lamp0015_bool', 'Lamp0016_bool']:
         lamp_data[field_name.lower()] = getattr(light_button, field_name)
 
+
     field_data = {f: getattr(field_settings, f) for f in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active']}
+    active_fields = [field for field in ['field19_active', 'field20_active', 'field21_active', 'field22_active', 'field23_active', 'field24_active'] if getattr(field_settings, field)]
+    enabled_fields = bool(active_fields)
+
 
     data = {
         'page': 'Veld3.html',
@@ -481,7 +533,7 @@ def veld3view(request):
     }
     return render(request, 'Index.html', data)
 
-# line 485 to 497 makes sure that if you've got the 'Guest' role, that you cant change anything on the site.
+# line 536 to 549 makes sure that if you've got the 'Guest' role, that you cant change anything on the site.
 def settingsview(request):
     if request.user.is_authenticated:
         if request.user.has_perm('Guest','Guest'):
@@ -496,7 +548,7 @@ def settingsview(request):
         }   
     return render(request, 'Index.html', data)
 
-# line 500 to 534 changes the name in the nav-bar. It also changes the name of the lights displayed on a certain kind of page
+# line 552 to 586 changes the name in the nav-bar. It also changes the name of the lights displayed on a certain kind of page
 def settingssview(request):
     if request.method == "POST" and "nav" in request.POST:
         boxes = {'Box1': 'Veld1', 'Box2': 'Veld2', 'Box3': 'Veld3', 'Box4': 'Veld4'}
