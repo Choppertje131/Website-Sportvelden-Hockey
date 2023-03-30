@@ -6,10 +6,11 @@ from django.shortcuts import render, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
-from .models import Settings_fieldnames, Settings_lightnames, Selecting_fields, LightButton
+from .models import Settings_fieldnames, Settings_lightnames, Selecting_fields, LightButton, Logo
 field_names = Settings_fieldnames
 light_names = Settings_lightnames.objects.all()
 light_button = LightButton
+Logo = Logo
 
 # line 15 to line 47 makes sure that you cant enter the website without having an account.
 def loginview(request): 
@@ -282,6 +283,9 @@ def homeview(request):
 
 # lines 284 to 534 makes sure that you can sellect the correct light option and makes the fields on the home page change color when its activated. There are 4 the same codes, but for a different page
 def homeview(request):
+    if not request.user.is_authenticated:
+            return redirect('/login')
+
     light_button = LightButton.objects.last()
     active_lamps = [lamp for lamp in ['Lamp001_bool', 'Lamp002_bool', 'Lamp003_bool', 'Lamp004_bool'] if getattr(light_button, lamp)]
     enabled_lamps = bool(active_lamps)
@@ -340,6 +344,7 @@ def homeview(request):
         'field_data': field_data,
         'enabled_fields': enabled_fields,
         'active_fields': active_fields,
+        'logo.logo_image': request.FILES,
     }
     return render(request, 'Index.html', data)
 
